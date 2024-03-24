@@ -6,9 +6,9 @@ const envSchema = z.object({
   PORT: z.string().transform((port) => parseInt(port)),
   HOST: z.enum(['localhost', '127.0.0.1']).default('localhost'),
   DATABASE_URL: z.string(),
-  DATABASE_CLIENT: z.enum(['ts', 'js']).default('ts'),
+  DATABASE_CLIENT: z.enum(['sqlite3']).default('sqlite3'),
   MIGRATION_URL: z.string(),
-  MIGRATION_EXT: z.string(),
+  MIGRATION_EXT: z.enum(['ts', 'js']).default('ts'),
 })
 
 const _env = envSchema.safeParse(process.env)
