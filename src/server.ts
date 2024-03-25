@@ -1,13 +1,36 @@
 import { env } from './env'
-import { knex } from './database'
 import fastify from 'fastify'
 import { Type, TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
+import { knex } from './database'
 import { randomUUID } from 'crypto'
 
 const app = fastify().withTypeProvider<TypeBoxTypeProvider>()
 
+app.get('/', (request, response) => {
+  const ROUTES = [
+    {
+      '/': {
+        url: env.HOME_ROUTE,
+        route: env.HOME_ROUTE,
+        desc: 'Adicione um novo produto no banco de dados',
+      },
+      list: {
+        url: env.ENDPOINT_LIST_ALLPRODUCTS,
+        route: env.GET_LIST_ROUTE,
+        desc: 'Rota para listar todos os produtos cadastrados',
+      },
+      create: {
+        url: env.ENDPOINT_POST_PRODUCTS,
+        route: env.NEW_PRODUCT_ROUTE,
+        desc: 'Adicione um novo produto no banco de dados',
+      },
+    },
+  ]
+  response.send(ROUTES)
+})
+
 app.post(
-  '/product',
+  env.NEW_PRODUCT_ROUTE,
   {
     schema: {
       body: Type.Object({
@@ -35,7 +58,7 @@ app.post(
   },
 )
 
-app.get('/list', async (request, reply) => {
+app.get(env.GET_LIST_ROUTE, async (request, reply) => {
   const allProducts = await knex('products').select('*').returning('*')
   reply.send(allProducts)
 })

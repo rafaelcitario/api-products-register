@@ -4,11 +4,16 @@ import { z } from 'zod'
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('production'),
   PORT: z.string().transform((port) => parseInt(port)),
-  HOST: z.enum(['localhost', '127.0.0.1']).default('localhost'),
+  HOST: z.string(),
   DATABASE_URL: z.string(),
   DATABASE_CLIENT: z.enum(['sqlite3']).default('sqlite3'),
   MIGRATION_URL: z.string(),
   MIGRATION_EXT: z.enum(['ts', 'js']).default('ts'),
+  ENDPOINT_POST_PRODUCTS: z.string(),
+  ENDPOINT_LIST_ALLPRODUCTS: z.string(),
+  NEW_PRODUCT_ROUTE: z.string(),
+  GET_LIST_ROUTE: z.string(),
+  HOME_ROUTE: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
