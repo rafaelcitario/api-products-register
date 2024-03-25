@@ -1,8 +1,8 @@
 import { env } from './env'
-import fastify from 'fastify'
-import { Type, TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
 import { knex } from './database'
 import { randomUUID } from 'crypto'
+import { fastify } from 'fastify'
+import { Type, TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
 
 const app = fastify().withTypeProvider<TypeBoxTypeProvider>()
 

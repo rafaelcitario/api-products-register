@@ -1,14 +1,11 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const env_1 = require("./env");
-const fastify_1 = __importDefault(require("fastify"));
-const type_provider_typebox_1 = require("@fastify/type-provider-typebox");
 const database_1 = require("./database");
 const crypto_1 = require("crypto");
-const app = (0, fastify_1.default)().withTypeProvider();
+const fastify_1 = require("fastify");
+const type_provider_typebox_1 = require("@fastify/type-provider-typebox");
+const app = (0, fastify_1.fastify)().withTypeProvider();
 app.get('/', (request, response) => {
     const ROUTES = [
         {
