@@ -5,7 +5,7 @@
 - [x] Criação de Formulário com os campos abaixo:
 
   - [x] Nome do produto - campo de texto
-  - [ ] Descrição do produto - campo de texto
+  - [x] Descrição do produto - campo de texto
   - [x] Valor do produto - campo de valor
   - [x] Disponível para venda - campo com 2 opções: sim / não
 
